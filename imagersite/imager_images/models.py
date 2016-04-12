@@ -65,11 +65,17 @@ class Photo(models.Model):
     published = models.CharField(max_length=10, choices=PUBLISHED_OPTIONS)
 
     def __str__(self):
-        """Return String Representation of Album."""
+        """Return string description of album."""
         return "{}: Photo belonging to {}".format(self.title, self.user)
 
     def __repr__(self):
-        """Return Console Representation of Album."""
-        return "Title: {} \nUser: {} \nAlbums: {} \nUploaded On: {}".format(
-            self.title, self.user, self.albums.all(), self.date_uploaded
+        """Return Representation of Album Object."""
+        return """
+            {\n\tuser: {} \n\tfile: {} \n\ttitle: {} \n\tdescription: {}
+            \n\tdate_uploaded: {}\n\tdate_modified: {}\n\tdate_published: {}
+            \n\tpublished: {}\n}
+        """.format(
+            self.user, self.file, self.title, self.description,
+            self.date_uploaded, self.date_modified, self.date_published,
+            self.published
         )
