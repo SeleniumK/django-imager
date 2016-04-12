@@ -29,6 +29,7 @@ class ImagerProfile(models.Model):
         related_name='profile',
         on_delete=models.CASCADE,
     )
+    objects = models.Manager()
     active = ActiveProfileManager()
     friends = models.ManyToManyField(
         "self",

@@ -37,7 +37,9 @@ class UserTestCase(TestCase):
 
     def test_user_profile(self):
         """Assert when user is created, has profile."""
-        pass
+        self.assertEqual(list(ImagerProfile.objects.filter(user__username__exact="bob")), [self.bob.profile])
+        self.assertEqual(list(ImagerProfile.objects.filter(user__username__exact="disa")), [self.disa.profile])
+        self.assertEqual(list(ImagerProfile.objects.filter(user__username__exact="charlie")), [self.charlie.profile])
 
     def test_user_profile_type(self):
         """Assert when user is created, has profile."""
