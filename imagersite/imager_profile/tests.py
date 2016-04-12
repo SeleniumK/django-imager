@@ -35,24 +35,23 @@ class UserTestCase(TestCase):
         )
         self.charlie.set_password("secret")
 
+        self.users = [self.bob, self.disa, self.charlie]
+
     def test_user_profile(self):
         """Assert when user is created, has profile."""
         profiles = ImagerProfile.objects.all()
-        self.assertIn(self.bob.profile, profiles)
-        self.assertIn(self.charlie.profile, profiles)
-        self.assertIn(self.disa.profile, profiles)
+        for user in self.users:
+            self.assertIn(user.profile, profiles)
 
     def test_user_profile_type(self):
         """Assert when user is created, has profile."""
-        self.assertIsInstance(self.bob.profile, ImagerProfile)
-        self.assertIsInstance(self.disa.profile, ImagerProfile)
-        self.assertIsInstance(self.charlie.profile, ImagerProfile)
+        for user in self.users:
+            self.assertIsInstance(user.profile, ImagerProfile)
 
     def test_active_user(self):
         """Assert when user is active when created."""
-        self.assertTrue(self.bob.is_active)
-        self.assertTrue(self.disa.is_active)
-        self.assertTrue(self.charlie.is_active)
+        for user in self.users:
+            self.assertTrue(user.is_active)
 
     def test_unactive_user(self):
         """Assert when user.is_active can be set to false."""
@@ -62,9 +61,8 @@ class UserTestCase(TestCase):
     def test_user_in_active_list(self):
         """Assert when user is active, in ImagerProfile.active."""
         profiles = ImagerProfile.active.all()
-        self.assertIn(self.bob.profile, profiles)
-        self.assertIn(self.charlie.profile, profiles)
-        self.assertIn(self.disa.profile, profiles)
+        for user in self.users:
+            self.assertIn(user.profile, profiles)
 
     def test_user_not_in_active_list(self):
         """Assert when user is not active, not in ImagerProfile.active."""
@@ -73,9 +71,8 @@ class UserTestCase(TestCase):
 
     def test_lonely_user(self):
         """Assert when user is created, user has no friends."""
-        self.assertFalse(self.bob.profile.friends.all())
-        self.assertFalse(self.disa.profile.friends.all())
-        self.assertFalse(self.charlie.profile.friends.all())
+        for user in self.users:
+            self.assertFalse(user.profile.friends.all())
 
     def test_friends_single(self):
         """Assert when user is given a friends friend appears in list."""
@@ -115,9 +112,8 @@ class UserTestCase(TestCase):
 
     def test_profile_str(self):
         """Assert profiles str method returns string with user's name."""
-        self.assertEqual(self.disa.profile.__str__(), "disa's profile")
-        self.assertEqual(self.charlie.profile.__str__(), "charlie's profile")
-        self.assertEqual(self.bob.profile.__str__(), "bob's profile")
+        for user in self.users:
+            self.assertEqual(user.profile.__str__(), "{}'s profile".format(user.username))
 
     def test_deleted_profile(self):
         """Assert when user is deleted, profile no longer exists."""
