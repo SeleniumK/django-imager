@@ -8,7 +8,7 @@ import factory
 class AlbumFactory(factory.django.DjangoModelFactory):
     """Create Test Albums Factory."""
 
-    def meta():
+    def Meta():
         """Model is Album."""
         model = Album
 
@@ -16,7 +16,7 @@ class AlbumFactory(factory.django.DjangoModelFactory):
 class PhotoFactory(factory.django.DjangoModelFactory):
     """Create Test Photo Factory."""
 
-    def meta():
+    def Meta():
         """Model is photo."""
         model = Photo
 
