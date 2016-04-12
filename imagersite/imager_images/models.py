@@ -1,14 +1,9 @@
 from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
-import datetime
 from django.conf import settings
 
-PUBLISHED_OPTIONS = (
-    ("private"),
-    ("shared"),
-    ("public"),
-)
+PUBLISHED_OPTIONS = ["private", "shared", "public"]
 
 
 @python_2_unicode_compatible
@@ -17,14 +12,15 @@ class Photo(models.Model):
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        related_name='photos',
         on_delete=models.CASCADE,
     )
-    file = models.ImageField()
+    file = models.ImageField(upload_to='user_photos')
     title = models.CharField(max_length=60)
     description = models.TextField(max_length=120)
-    # date_uploaded = models.
-    # date_modified = models.
-    # date_published = models.
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+    date_published = models.DateTimeField(null=True)
     published = models.CharField(max_length=10, choices=PUBLISHED_OPTIONS)
 
 
@@ -34,17 +30,18 @@ class Album(models.Model):
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        related_name="albums",
         on_delete=models.CASCADE,
     )
-    cover = models.OneToOne()
+    cover = models.OneToOneField()
     title = models.CharField(max_length=60)
     description = models.TextField(max_length=120)
-    # date_uploaded = 
-    # date_modified = 
-    # date_published =
-    published = models.CharField(max_length=10, choices=PUBLISHED_OPTIONS)
     photos = models.ManyToManyField(
         Photo,
-        related_name="in_album",
+        related_name="albums",
         symmetrical=False
     )
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
+    date_published = models.DateTimeField(null=True)
+    published = models.CharField(max_length=10, choices=PUBLISHED_OPTIONS)

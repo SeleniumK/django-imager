@@ -39,8 +39,12 @@ class ImagerProfile(models.Model):
     location = models.CharField(max_length=2, choices=LOCATIONS)
 
     def __str__(self):
-        """Create Representation Of ImagerProfile."""
+        """Create String Representation Of ImagerProfile."""
         return "{}'s profile".format(self.user)
+
+    def __repr__(self):
+        """Create console Representation Of ImagerProfile."""
+        return self.__str__()
 
     @property
     def is_active(self):
