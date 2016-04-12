@@ -17,7 +17,7 @@ class UserFactory(factory.django.DjangoModelFactory):
 class UserTestCase(TestCase):
     """Test User and ImagerProfile Models."""
 
-    def setup(self):
+    def setUp(self):
         """Set up environment for Testing Users."""
         self.bob = UserFactory.create(
             username="bob",
