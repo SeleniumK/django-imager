@@ -120,4 +120,10 @@ class UserTestCase(TestCase):
         self.charlie.delete()
         self.assertFalse(ImagerProfile.objects.filter(user__username__exact='charlie'))
 
+    def test_add_camera_type(self):
+        """Assert Camera Type is a valid field that can be added to Profile."""
+        self.assertIsNone(self.charlie.profile.camera_type)
+        self.charlie.profile.camera_type = "Canon"
+        self.assertEqual(self.charlie.profile.camera_type, "Canon")
+
 

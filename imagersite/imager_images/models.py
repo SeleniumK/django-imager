@@ -28,7 +28,6 @@ class Album(models.Model):
     description = models.TextField(max_length=120)
     photos = models.ManyToManyField(
         "Photo",
-        null=True,
         related_name="albums",
         symmetrical=False
     )

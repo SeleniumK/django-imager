@@ -37,6 +37,7 @@ class ImagerProfile(models.Model):
         symmetrical=False
     )
     location = models.CharField(max_length=2, choices=LOCATIONS)
+    camera_type = models.CharField(max_length=20, null=True)
 
     def __str__(self):
         """Create String Representation Of ImagerProfile."""

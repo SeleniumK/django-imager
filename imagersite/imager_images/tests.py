@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.db.models.fields.files import ImageFieldFile
 from imager_images.models import Photo, Album
 from imager_profile.tests import UserFactory
+from datetime import timezone, datetime
 import factory
 
 
@@ -23,8 +24,8 @@ class PhotoFactory(factory.django.DjangoModelFactory):
         model = Photo
 
 
-class AlbumAndTestCase(TestCase):
-    """Asserts that Photos and Albums have access to all correct attributes."""
+class SingleAlbumAndPhotoTestCase(TestCase):
+    """Asserts that a single User's Photos and Albums work as expected."""
 
     def setUp(self):
         """Set Up Testing Environment."""
@@ -46,29 +47,55 @@ class AlbumAndTestCase(TestCase):
 
     def test_album_attributes(self):
         """Assert Album has necessary attributes."""
-        pass
+        album = self.vacation
+        self.assertEqual(album.user, self.maithrika)
+        self.assertEqual(album.title, "Vacation")
+        self.assertEqual(album.description, "Album of pics")
+        self.assertEqual(album.published, "public")
+        self.assertIsNone(album.date_published)
+        self.assertGreater(datetime.now(timezone.utc), album.date_uploaded)
+        self.assertGreater(datetime.now(timezone.utc), album.date_modified)
 
     def test_user_album(self):
         """Assert album is in User.albums."""
         self.assertIn(self.vacation, self.maithrika.albums.all())
-# create album for user. Assert album in user.album
-# assert new album is type album   
-# assert user.album is type album
-# create album, attach to user, assert user has album
-# assert album has no cover by default
-# assert album has title
-# assert album has description 
-# assert album has photos
-# assert album has date uploaded
-# assert album has date modified
-# assert album has date published
-# assert album has .published
 
+    def test_album_type(self):
+        """Assert created album is type Album."""
+        self.assertIsInstance(self.vacation, Album)
 
-# create photo for user. Assert photo exists
-# create photo, attach to user, assert user has photo
-# create photo and album for user, assert photo can be added to album
+    def test_user_album_type(self):
+        """Assert items in user.albums are type Album."""
+        self.assertIsInstance(self.maithrika.albums.all()[0], Album)
+
+    def test_album_in_users_album_list(self):
+        """Assert album in user's albums."""
+        self.assertIn(self.vacation, self.maithrika.albums.all())
+
+    def test_no_album_cover(self):
+        """Assert album has no cover by default."""
+        self.assertIsNone(self.vacation.cover)
+
+    def test_add_cover(self):
+        """Assert that cover can be added to album."""
+        pass
+
+    def test_photo_user_photos(self):
+        """Assert that photo exists in users photos."""
+        pass
+
+    def test_user_photos_in_photos(self):
+        """Assert user photos in Photos."""
+        pass
+
+    def test_add_photo_to_album_albumaware(self):
+        """Assert that adding a photo to an album adds that photo to album.photos."""
+        pass
+
+    def test_add_photo_to_album_photoaware(self):
+        """Assert that once photo is added to album, that album is in Photo.albums."""
+        pass
+
+class MultipleUserAndPhotoTestCase(TestCase):
 # create photo for one user, album for another, assert photo must be user's to go in album
-# assert user's photo can be made cover of album
-# ssert album has cover
 # assert cover of album must belong to the same user
