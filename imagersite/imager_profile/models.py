@@ -40,7 +40,7 @@ class ImagerProfile(models.Model):
 
     def __str__(self):
         """Create Representation Of ImagerProfile."""
-        return "{}'s' profile".format(self.user)
+        return "{}'s profile".format(self.user)
 
     @property
     def is_active(self):
