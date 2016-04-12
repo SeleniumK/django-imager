@@ -39,7 +39,7 @@ class AlbumAndTestCase(TestCase):
         )
         self.selfie = PhotoFactory.create(
             title="selfie",
-            user=maithrika,
+            user=self.maithrika,
             description="just a picture",
             published="public"
         )
@@ -50,7 +50,7 @@ class AlbumAndTestCase(TestCase):
 
     def test_user_album(self):
         """Assert album is in User.albums."""
-        self.assertIn(self.vacation, self.maithrika.albums)
+        self.assertIn(self.vacation, self.maithrika.albums.all())
 # create album for user. Assert album in user.album
 # assert new album is type album   
 # assert user.album is type album
