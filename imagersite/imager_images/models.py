@@ -71,6 +71,6 @@ class Photo(models.Model):
 
     def __repr__(self):
         """Return Console Representation of Album."""
-        return "Title: {} User: {} Albums: {} Uploaded On: {}".format(
+        return "Title: {} \nUser: {} \nAlbums: {} \nUploaded On: {}".format(
             self.title, self.user, self.albums.all(), self.date_uploaded
         )
