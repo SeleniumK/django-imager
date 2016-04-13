@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^$',
         TemplateView.as_view(template_name= 'home.html'),
         name="home_page"),  # url contains nothing but slash
-    url(r'^accounts/', include('registration.backends.hmac.url'))
+    url(r'^accounts/', include('registration.backends.hmac.urls'))
 ]

@@ -1,10 +1,10 @@
-{% extends base.html %}
+{% extends "base.html" %}
 {% block content %}
     <header>
        <h1>Image site name</h1>
     </header>
     <section>
-        <a href="/register"><h2>Hey! You! Join our site</h2></a>
+        <a href="/accounts/register"><h2>Hey! You! Join our site</h2></a>
     </section>
     <section>
         <img src="{{image}}" alt=""/>
