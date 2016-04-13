@@ -15,13 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf.urls import include
 from .views import home_page, ClassView
 from django.views.generic import TemplateView
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^home/([0-9]+)$',
+    url(r'^$',
         TemplateView.as_view(template_name= 'home.html'),
-        name="home_page")  # url contains nothing but slash
+        name="home_page"),  # url contains nothing but slash
+    url(r'^accounts/', include('registration.backends.hmac.url'))
 ]
