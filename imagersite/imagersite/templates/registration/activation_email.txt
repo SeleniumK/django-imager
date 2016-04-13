@@ -1,0 +1,5 @@
+Hey! You registered for our site. Here is your activation info.
+
+Activation Key: {{ activation_key }}
+Expiration Date: {{ expiration_date }}
+Site: {{ site }}
