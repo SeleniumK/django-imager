@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.conf import settings
+import pprint
 
 LOCATIONS = (
     ("US", "United States"),
@@ -45,7 +46,7 @@ class ImagerProfile(models.Model):
 
     def __repr__(self):
         """Create console Representation Of ImagerProfile."""
-        return self.__str__()
+        return pprint.pformat(vars(self))
 
     @property
     def is_active(self):
