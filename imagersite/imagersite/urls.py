@@ -20,16 +20,14 @@ from django.conf.urls import include
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
-# from .views import home_page, ClassView
+from .views import home_page
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',
-        TemplateView.as_view(template_name='home.html'),
-        name="home_page"),  # url contains nothing but slash
+    url(r'^$', home_page, name="home_page"),  # url contains nothing but slash
     # url(r'^$', ClassView.as_view(), name=home)
-    url(r'^accounts/login', 'django.contrib.auth.views.login', name='login'),
-    url(r'^accounts/logout', 'django.contrib.auth.views.logout', name='logout'),
+    url(r'^login$', 'django.contrib.auth.views.login', name='login'),
+    url(r'^logout$', 'django.contrib.auth.views.logout', name='logout'),
     url(r'^accounts/', include('registration.backends.hmac.urls'))
 ]
 
