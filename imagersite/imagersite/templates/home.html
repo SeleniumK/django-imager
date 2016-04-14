@@ -2,7 +2,12 @@
 {% load staticfiles %}
 {% block content %}
 <header class="intro u-full-width ">
-    <div class="intro-image" style="background: url({% static 'imagersite/images/default-image.jpg' %}) 50% 0% no-repeat; background-size: cover;">
+<!-- if image passed in, use as background url, else use static -->
+    {% if image %}
+        <div class="intro-image" style="background: url({{ image }}) 50% 0% no-repeat; background-size: cover;">
+    {% else %}
+        <div class="intro-image" style="background: url({% static 'imagersite/images/default-image.jpg' %}) 50% 0% no-repeat; background-size: cover;">*/
+    {% endif %}
         
     </div>
     <div class="container centered">
