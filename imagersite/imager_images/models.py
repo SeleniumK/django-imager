@@ -11,6 +11,12 @@ PUBLISHED_OPTIONS = (
 )
 
 
+def image_path(instance, file_name):
+    import pdb; pdb.set_trace()
+    """Upload file to media root in user folder."""
+    return 'user_{0}/{1}'.format(instance.user.id, file_name)
+
+
 @python_2_unicode_compatible
 class Album(models.Model):
     """Create Album Model."""
@@ -55,7 +61,7 @@ class Photo(models.Model):
         related_name='photos',
         on_delete=models.CASCADE,
     )
-    file = models.ImageField(upload_to='user_photos')
+    file = models.ImageField(upload_to=image_path)
     title = models.CharField(max_length=60)
     description = models.TextField(max_length=120)
     date_uploaded = models.DateTimeField(auto_now_add=True)
