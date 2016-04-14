@@ -15,15 +15,28 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
 from django.conf.urls import include
-from .views import home_page, ClassView
 from django.views.generic import TemplateView
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf.urls.static import static
+# from .views import home_page, ClassView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',
-        TemplateView.as_view(template_name= 'home.html'),
+        TemplateView.as_view(template_name='home.html'),
         name="home_page"),  # url contains nothing but slash
+    # url(r'^$', ClassView.as_view(), name=home)
+    url(r'^accounts/login', 'django.contrib.auth.views.login', name='login'),
+    url(r'^accounts/logout', 'django.contrib.auth.views.logout', name='logout'),
     url(r'^accounts/', include('registration.backends.hmac.urls'))
 ]
+
+urlpatterns += staticfiles_urlpatterns()
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )

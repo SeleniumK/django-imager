@@ -1,12 +1,20 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block content %}
-    <header>
-       <h1>Image site name</h1>
-    </header>
-    <section>
-        <a href="/accounts/register"><h2>Hey you! Join our site</h2></a>
-    </section>
-    <section>
-        <img src="{{image}}" alt=""/>
-    </section>
+<header class="intro u-full-width ">
+    <div class="intro-image" style="background: url({% static 'imagersite/images/default-image.jpg' %}) 50% 0% no-repeat; background-size: cover;">
+        
+    </div>
+    <div class="container centered">
+        <div class="twelve columns">
+            <h1 class="separator">Hey! <br>Do you like pictures?</h1>
+            <h2> Well, so do we. </h2>
+        </div>
+    </div>
+</header>
+<section class="register u-full-width featured-bg-image">
+    <h4 class="centered">
+        <a class="button" href="/accounts/register">Hey you! Join our site</a>
+    </h4>
+</section>
 {% endblock %}

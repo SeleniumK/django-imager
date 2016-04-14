@@ -1,14 +1,17 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Imagetastic.</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/skeleton.css' %}">
+    <link rel="stylesheet" href="{% static 'imagersite/css/style.css' %}">
 </head>
 <body>
 {% block content %}
 {% endblock content %}
-    <footer></footer>
+<footer></footer>
 </body>
 </html>

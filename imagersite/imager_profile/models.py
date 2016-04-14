@@ -41,11 +41,11 @@ class ImagerProfile(models.Model):
     camera_type = models.CharField(max_length=20, null=True)
 
     def __str__(self):
-        """Create String Representation Of ImagerProfile."""
+        """Create String Representation Of ImagerProfile Details."""
         return "{}'s profile".format(self.user)
 
     def __repr__(self):
-        """Create console Representation Of ImagerProfile."""
+        """Create a Representation Of ImagerProfile Object."""
         return pprint.pformat(vars(self))
 
     @property

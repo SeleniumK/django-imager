@@ -15,7 +15,7 @@ class ClassView(TemplateView):
 
     template_name = 'home.html'
 
-    def get_context_data(self, id=1):
+    def get_context_data(self):
         """Foo Context for home template."""
-        foo = 'garbanzobeans'
-        return {'foo': foo}
+        image = 'garbanzobeans'
+        return {'image': image}

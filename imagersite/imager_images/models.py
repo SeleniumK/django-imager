@@ -41,7 +41,7 @@ class Album(models.Model):
         return "{}: Album belonging to {}".format(self.title, self.user)
 
     def __repr__(self):
-        """Return Console Representation of Album."""
+        """Return Representation of Album object."""
         return "Title: {} User: {} NumPhotos: {} CoverPhoto: {}".format(
             self.title, self.user, self.photos.count(), self.cover.title
         )
