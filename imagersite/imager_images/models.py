@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.conf import settings
+import pprint
 
 PUBLISHED_OPTIONS = (
     ("private", "private"),
@@ -42,9 +43,7 @@ class Album(models.Model):
 
     def __repr__(self):
         """Return Representation of Album object."""
-        return "Title: {} User: {} NumPhotos: {} CoverPhoto: {}".format(
-            self.title, self.user, self.photos.count(), self.cover.title
-        )
+        return pprint.pformat(vars(self))
 
 
 @python_2_unicode_compatible
@@ -70,12 +69,4 @@ class Photo(models.Model):
 
     def __repr__(self):
         """Return Representation of Album Object."""
-        return """
-            {\n\tuser: {} \n\tfile: {} \n\ttitle: {} \n\tdescription: {}
-            \n\tdate_uploaded: {}\n\tdate_modified: {}\n\tdate_published: {}
-            \n\tpublished: {}\n}
-        """.format(
-            self.user, self.file, self.title, self.description,
-            self.date_uploaded, self.date_modified, self.date_published,
-            self.published
-        )
+        return pprint.pformat(vars(self))
