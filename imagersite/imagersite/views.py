@@ -5,7 +5,7 @@ from imager_images.models import Photo
 
 def home_page(request, *args, **kwargs):
     try:
-        image = Photo.objects.filter(published="public").order_by("?")[0]
+        image = Photo.objects.all().order_by("?")[0]
     except IndexError:
         image = None
     return render(request, 'home.html', context={'image': image})

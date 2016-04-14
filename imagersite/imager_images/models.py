@@ -61,7 +61,7 @@ class Photo(models.Model):
         related_name='photos',
         on_delete=models.CASCADE,
     )
-    file = models.ImageField(upload_to=image_path)
+    img_file = models.ImageField(upload_to=image_path)
     title = models.CharField(max_length=60)
     description = models.TextField(max_length=120)
     date_uploaded = models.DateTimeField(auto_now_add=True)
