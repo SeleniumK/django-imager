@@ -84,10 +84,11 @@ section {
   background-color: #d87843;
 }
 
+/*Intro Block*/
 
 .intro {
   padding: 0;
-  min-height: 350px;
+  min-height: 500px;
   text-align: center;
   position: relative;
 }
