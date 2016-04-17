@@ -1,11 +1,10 @@
 from django.test import Client, TestCase
-from django.conf import settings
+from django.contrib.auth.models import User
 
 HOME = '/'
-REGISTER = '/accounts/'
+REGISTER = '/accounts/register/'
 LOGIN = '/login'
-LOGOUT = '/logout/'
-USER = settings.AUTH_USER_MODEL
+LOGOUT = '/logout'
 
 
 class UnauthenticatedUser(TestCase):
@@ -15,7 +14,26 @@ class UnauthenticatedUser(TestCase):
         """Setup unauth user."""
         client = Client()
         self.home = client.get(HOME)
+        self.login = client.get(LOGIN)
+        self.logout = client.get(LOGOUT)
+        self.register = client.get(REGISTER)
 
     def test_no_user_in_db(self):
         """No user i db."""
-        self.assertFalse(USER.objects.count())
+        self.assertFalse(User.objects.count())
+
+    def test_homepage(self):
+        """Test homepage can be reached."""
+        self.assertEqual(self.home.status_code, 200)
+
+    def test_login(self):
+        """Test login cna be reached."""
+        self.assertEqual(self.login.status_code, 200)
+
+    def test_logout(self):
+        """Test logout can be reached."""
+        self.assertEqual(self.logout.status_code, 200)
+
+    def test_register(self):
+        """Test register can be reached."""
+        self.assertEqual(self.register.status_code, 200)
