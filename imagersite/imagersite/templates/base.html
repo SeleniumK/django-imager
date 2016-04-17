@@ -10,15 +10,18 @@
     <link rel="stylesheet" href="{% static 'imagersite/css/style.css' %}">
 </head>
 <body>
-<nav>
-    <ul>
-    {% if user.is_authenticated %}
-        <li><a href="/logout" title="logout">Logout</a></li>
-    {% else %}
-        <li><a href="/login" title="login">Login</a></li>
-    {% endif %}
-    </ul>
-</nav>
+<header>
+    <h1>OurName</h1>
+    <nav>
+        <ul>
+        {% if user.is_authenticated %}
+            <li><a href="/logout" title="logout">Logout</a></li>
+        {% else %}
+            <li><a href="/login" title="login">Login</a></li>
+        {% endif %}
+        </ul>
+    </nav>
+</header>
 {% block content %}
 {% endblock content %}
 <footer></footer>

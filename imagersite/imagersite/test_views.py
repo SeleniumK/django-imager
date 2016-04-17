@@ -10,7 +10,7 @@ HOME = '/'
 SIGNUP = '/accounts/register/'
 
 
-class NoUsers(TestCase):
+class UnAuthenticatedUsers(TestCase):
     """Views with no users in db."""
 
     def setUp(self):
@@ -47,13 +47,6 @@ class NoUsers(TestCase):
     def test_signup_routing_OK(self):
         """Assert that navigating to signup page returns a 200 response code."""
         self.assertEquals(self.signup_response.status_code, 200)
-
-
-class UnauthenticatedUser(TestCase):
-    """Views for unauthenticated users."""
-
-    def setUp(self):
-        pass
 
     def test_home_view_random_photo(self):
         """Assert that, if available, a random user photo appears on home."""

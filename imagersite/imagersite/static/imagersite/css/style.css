@@ -16,24 +16,58 @@ a {
     text-decoration: none;
 }
 
+header{
+  overflow: hidden;
+}
+
+h1 {
+  float: left;
+  margin-top: .5%;
+  margin-left: 3%;
+  color: #ECECED;
+}
+
 h4 {
-  font-size: 22px;
+  font-size: 1em;
 }
 
 h3 {
-  font-size: 28px;
+  font-size: 1.5em;
 }
 
 nav {
-  width: 100%;
-  background: black;
-  color:;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0 3%;
+}
+
+nav li {
+  font-size: 1.2em;
+}
+ 
+nav a {
+  color: #ECECED;
+  display: block;
+  transition: .3s background-color;
+}
+ 
+nav a:hover {
+  background-color: #063D84;
 }
 
 
 section {
   color: #ECECED;
   text-align: center;
+  border-bottom: 10px solid black;
+  border-top: 62px solid black;
 }
 
 .centered {
@@ -81,11 +115,15 @@ section {
   top: 0; right: 0; bottom: 0; left: 0;
 }
 .intro h2 {
-  font-size: 24px;
+  font-size: 2em;
 }
  
 .intro p {
   padding: 0 15%;
+}
+
+.intro-contents {
+  margin-top: -5%;
 }
 .intro .separator:before {
   background-color: white;
@@ -141,4 +179,20 @@ section {
     padding: 15px;
   }
 }
+
+
+@media screen and (min-width: 600px) {
+  nav li {
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1.4em;
+  }
+ 
+
+  nav li {
+    display: inline-block;
+    margin-right: -4px;
+  }
+
 
