@@ -1,12 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
-<!-- if image passed in, use as background url, else use static -->
-<!-- {% if image %} -->
 <section class="intro" style="background: url({{ image.img_file.url }}) 50% 0% no-repeat; background-size: cover;">
-<!-- {% else %} -->
-<!-- <section class="intro" style="background: url({% static 'imagersite/images/default-image.jpg' %}) 50% 0% no-repeat; background-size: cover;"> -->
-<!-- {% endif %} -->
     <div class="container centered">
         <h1 class="separator">Hey! <br>Do you like pictures?</h1>
         <h2> Well, so do we. </h2>
