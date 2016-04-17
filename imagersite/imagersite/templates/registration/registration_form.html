@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-<h3>Hey, you register here!</h3>
-{% block content %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="hey">
-</form>
+    <h3>Hey, you register here!</h3>
+    {% block content %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="hey">
+    </form>
 {% endblock %}
