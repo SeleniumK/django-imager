@@ -12,8 +12,11 @@
 <body>
 <nav>
     <ul>
-        <li><a href="/login" title="login">Login</a></li>
+    {% if user.is_authenticated %}
         <li><a href="/logout" title="logout">Logout</a></li>
+    {% else %}
+        <li><a href="/login" title="login">Login</a></li>
+    {% endif %}
     </ul>
 </nav>
 {% block content %}

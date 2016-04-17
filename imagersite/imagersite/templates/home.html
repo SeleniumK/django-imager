@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
-<!-- <section class="intro u-full-width "> -->
 <!-- if image passed in, use as background url, else use static -->
 {% if image %}
 <section class="intro" style="background: url({{ image.img_file.url }}) 50% 0% no-repeat; background-size: cover;">
@@ -13,7 +12,7 @@
         <h2> Well, so do we. </h2>
     </div>
         <h4 class="centered">
-            <a class="button" href="/accounts/register">Hey you! Join our site</a>
+            <a class="button" href="/accounts/register">Join our site</a>
         </h4>
 </section>
  {% endblock %}
