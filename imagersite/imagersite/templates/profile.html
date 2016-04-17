@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<section>
+<h2>Welcome {{user.username}}!</h2>
+<ul>
+    <li>Name: {{user.firstname}} {{user.lastname}}</li>
+    <li>Location: {{user.location}}</li>
+    <li>Camera: {{user.camera_type}}</li>
+</ul>
+<h4>Friends:</h4>
+<ul>
+    {% for friend in user.friends%}
+    <li>{{friend}}</li>
+    {% endfor %}
+</ul>
+</section>
+{% endblock %}
