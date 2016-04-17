@@ -1,6 +1,6 @@
 from django.shortcuts import render
-# from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
+# from django.views.generic import TemplateView
 # from django.contrib.auth.mixins import LoginRequiredMixin
 
 PROFILE_TEMPLATE = 'profile.html'
@@ -10,11 +10,3 @@ PROFILE_TEMPLATE = 'profile.html'
 def Profile(request, *args, **kwargs):
     """Authenticated User Profile."""
     return render(request, PROFILE_TEMPLATE)
-
-# Create your views here.
-# class Profile(LoginRequiredMixin, TemplateView):
-    # """Authenticated User Profile."""
-
-    # template = 'profile.html'
-
-    # def authUserProfile(request)

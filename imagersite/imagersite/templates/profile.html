@@ -6,11 +6,13 @@
     <li>Name: {{user.firstname}} {{user.lastname}}</li>
     <li>Location: {{user.location}}</li>
     <li>Camera: {{user.camera_type}}</li>
+    <li>Photos Uploaded: {{user.photos.count}}
+    <li>Albums Created: {{user.albums.count}}
 </ul>
 <h4>Friends:</h4>
 <ul>
-    {% for friend in user.friends%}
-    <li>{{friend}}</li>
+    {% for friend in user.profile.friends.all %}
+    <li>{{friend.user.username}}</li>
     {% endfor %}
 </ul>
 </section>
