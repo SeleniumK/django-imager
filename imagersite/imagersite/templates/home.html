@@ -1,25 +1,13 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% block content %}
-<header class="intro u-full-width ">
-<!-- if image passed in, use as background url, else use static -->
-    {% if image %}
-        <div class="intro-image" style="background: url({{ image.img_file.url }}) 50% 0% no-repeat; background-size: cover;">
-    {% else %}
-        <div class="intro-image" style="background: url({% static 'imagersite/images/default-image.jpg' %}) 50% 0% no-repeat; background-size: cover;">*/
-    {% endif %}
-        
+<section class="intro" style="background: url({{ image.img_file.url }}) 50% 0% no-repeat; background-size: cover;">
+    <div class="container centered intro-contents">
+        <h2 class="separator">Hey! <br>Do you like pictures?</h2>
+        <h3> Well, so do we. </h3>
     </div>
-    <div class="container centered">
-        <div class="twelve columns">
-            <h1 class="separator">Hey! <br>Do you like pictures?</h1>
-            <h2> Well, so do we. </h2>
-        </div>
-    </div>
-</header>
-<section class="register u-full-width featured-bg-image">
-    <h4 class="centered">
-        <a class="button" href="/accounts/register">Hey you! Join our site</a>
-    </h4>
+        <h4 class="centered">
+            <a class="button" href="/accounts/register">Join our site</a>
+        </h4>
 </section>
-{% endblock %}
+ {% endblock %}

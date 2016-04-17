@@ -12,7 +12,6 @@ PUBLISHED_OPTIONS = (
 
 
 def image_path(instance, file_name):
-    # import pdb; pdb.set_trace()
     """Upload file to media root in user folder."""
     return 'user_{0}/{1}'.format(instance.user.id, file_name)
 
