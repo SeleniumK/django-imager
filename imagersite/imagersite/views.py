@@ -9,4 +9,3 @@ def home_page(request, *args, **kwargs):
     except IndexError:
         image = None
     return render(request, 'home.html', context={'image': image})
-
