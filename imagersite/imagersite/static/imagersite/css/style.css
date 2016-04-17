@@ -6,6 +6,8 @@
 }
 
 body {
+  padding: 0;
+  margin: 0;
   font-size: 16px;
   letter-spacing: .05em;
   color: #525C69;
@@ -17,12 +19,15 @@ a {
 }
 
 header{
+  background-color: black;
   overflow: hidden;
+  padding: .5% 0;
 }
 
 h1 {
   float: left;
-  margin-top: .5%;
+  margin-top: .7%;
+  margin-bottom: -.15%;
   margin-left: 3%;
   color: #ECECED;
 }
@@ -46,6 +51,7 @@ nav ul {
   text-align: center;
   padding: 0;
   margin: 0 3%;
+  margin-bottom: -.15%;
 }
 
 nav li {
@@ -67,7 +73,6 @@ section {
   color: #ECECED;
   text-align: center;
   border-bottom: 10px solid black;
-  border-top: 62px solid black;
 }
 
 .centered {
