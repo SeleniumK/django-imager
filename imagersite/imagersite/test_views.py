@@ -1,15 +1,15 @@
 from django.test import TestCase, Client
 from django.conf import settings
-from django.template.response import TemplateResponse
+# from django.template.response import TemplateResponse
 from django.contrib.auth.models import User
 from imager_images.models import Photo
 
 
-DEFAULT_PIC = 'static/imagersite/images/default-image.jpg'
+DEFAULT_PIC = settings.STATIC_URL + "imagersite/images/default-image.jpg"
 HOME = '/'
 
 
-class EmptySite(TestCase):
+class NoUsers(TestCase):
     """Views with no users in db."""
 
     def setUp(self):
@@ -31,16 +31,16 @@ class EmptySite(TestCase):
         self.assertEquals(self.home_response.status_code, 200)
 
     def test_home_view_template(self):
+        """Assert all templates are hit for home view."""
         templates = self.home_response.templates
         self.assertEquals(templates[0].name, 'home.html')
         self.assertEquals(templates[1].name, 'base.html')
+        self.assertEquals(len(templates), 2)
 
     def test_home_view_no_context(self):
         """Assert that no image context is passed when no there are no photos."""
         img_file = self.home_response.context['image']
-        self.assertIsNone(img_file)
-
-    def test_home_view_default_photo(self)
+        self.assertEquals(img_file, DEFAULT_PIC)
 
 
 class UnauthenticatedUser(TestCase):
