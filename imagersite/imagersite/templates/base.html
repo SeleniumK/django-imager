@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Imagetastic.</title>
-    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/normalize.css' %}">
-    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/skeleton.css' %}">
+    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/css/skeleton.css' %}">
     <link rel="stylesheet" href="{% static 'imagersite/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'imagersite/fancybox/source/jquery.fancybox.css' %}" type="text/css" media="screen" />
 </head>
 <body>
 <header>
@@ -27,5 +28,7 @@
 {% block content %}
 {% endblock content %}
 <footer></footer>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'imagersite/fancybox/source/jquery.fancybox.pack.js' %}"></script>
 </body>
 </html>
