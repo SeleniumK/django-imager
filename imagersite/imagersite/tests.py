@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.staticfiles import finders
 from django.test import Client, TestCase
 from django.contrib.auth.models import User
+from django.conf import settings
 from imager_images.tests.test_models import PhotoFactory, AlbumFactory
 import factory
 
@@ -85,7 +86,3 @@ class AuthenticatedUser(TestCase):
         photo_id = self.photo1.id
         response = self.unauth_user.get('/images/photos/{}/{}'.format(user_id, photo_id))
         self.assertEqual(response.status_code, 401)
-
-
-
-

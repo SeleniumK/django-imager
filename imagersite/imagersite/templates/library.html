@@ -1,6 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Library</h2>
-<h3>Albums</h3>
-<h3>Photos</h3>
+{% load staticfiles %}
+{% load thumbnail %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="{% static '/fancybox/source/jquery.fancybox.pack.js' %}"></script>
+<link rel="stylesheet" href="{% static '/fancybox/source/jquery.fancybox.css' %}" type="text/css" media="screen" />
+
+
+<h2>{{user.username}}'s Library</h2>
+<section>
+    <h3>Albums</h3>
+    {% for album in albums %}
+    <a id="inline" href="#{{album.id}}">
+        {% thumbnail album.cover.img_file "200x200" crop="center" as im %}
+        <img src="{{ im.url }}">
+        {% endthumbnail %}
+    </a>
+    <div style="display:none">
+        <div id="{{album.id}}">
+        {% for photo in album.photos.all %}
+            <img src="{{photo.img_file.url}}"/>
+        {% endfor %}
+        </div>
+    </div>
+    <h4>{{ album.title }}</h4>
+    <p>{{ album.description }}</p>
+    {% endfor %}
+</section>
+
+<section>
+    <h3>Photos</h3>
+    {% for photo in photos %}
+        <h4>{{ photo.title }}</h4>
+        <a id="inline" href="#{{photo.id}}">
+            {% thumbnail photo.img_file "200x200" crop="center" as im %}
+            <img src="{{ im.url }}">
+            {% endthumbnail %}
+        </a>
+        <div style="display:none">
+            <div id="{{photo.id}}">
+                <img src="{{photo.img_file.url}}"/>
+            </div>
+        </div>
+        <p>{{ photo.description }}</p>
+    {% endfor %}
+</section>
+
 {% endblock %}
