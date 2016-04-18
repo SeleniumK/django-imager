@@ -11,38 +11,40 @@
 <section>
     <h3>Albums</h3>
     {% for album in albums %}
-    <a id="inline" href="#{{album.id}}">
+    <a id="inline" href="#{{album.id}}" alt"Album {{album.title}}">
         {% thumbnail album.cover.img_file "200x200" crop="center" as im %}
         <img src="{{ im.url }}">
         {% endthumbnail %}
     </a>
     <div style="display:none">
         <div id="{{album.id}}">
-        {% for photo in album.photos.all %}
-            <img src="{{photo.img_file.url}}"/>
-        {% endfor %}
+            <h4>{{ album.title }}</h4>
+            <p>{{ album.description }}</p>
+            {% for photo in album.photos.all %}
+                <img src="{{photo.img_file.url}}"/>
+            {% endfor %}
         </div>
     </div>
-    <h4>{{ album.title }}</h4>
-    <p>{{ album.description }}</p>
     {% endfor %}
 </section>
 
 <section>
     <h3>Photos</h3>
+    <div class="photos">
     {% for photo in photos %}
-        <h4>{{ photo.title }}</h4>
-        <a id="inline" href="#{{photo.id}}">
-            {% thumbnail photo.img_file "200x200" crop="center" as im %}
-            <img src="{{ im.url }}">
-            {% endthumbnail %}
-        </a>
-        <div style="display:none">
-            <div id="{{photo.id}}">
-                <img src="{{photo.img_file.url}}"/>
+            <a id="inline" href="#{{photo.id}}">
+                {% thumbnail photo.img_file "200x200" crop="center" as im %}
+                <img src="{{ im.url }}" alt="{{photo.title}}">
+                {% endthumbnail %}
+            </a>
+            <div style="display:none">
+                <div id="{{photo.id}}">
+                    <img src="{{photo.img_file.url}}"/>
+                    <h4>{{photo.title}}</h4>
+                    <p>{{photo.description}}
+                </div>
             </div>
-        </div>
-        <p>{{ photo.description }}</p>
+    </div>
     {% endfor %}
 </section>
 
