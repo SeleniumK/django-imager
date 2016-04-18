@@ -1,3 +1,6 @@
+"""Tests for project level urls and views."""
+from __future__ import unicode_literals
+from django.contrib.staticfiles import finders
 from django.test import Client, TestCase
 from django.contrib.auth.models import User
 
@@ -5,6 +8,7 @@ HOME = '/'
 REGISTER = '/accounts/register/'
 LOGIN = '/login'
 LOGOUT = '/logout'
+DEFAULT_IMAGE = finders.find('static/imagersite/images/default-image.jpg')
 
 
 class UnauthenticatedUser(TestCase):
@@ -37,3 +41,8 @@ class UnauthenticatedUser(TestCase):
     def test_register(self):
         """Test register can be reached."""
         self.assertEqual(self.register.status_code, 200)
+
+    def test_default_image(self):
+        """Test default image shows up."""
+        img_path = self.home.context['image']
+        self.assertEqual(img_path, DEFAULT_IMAGE)
