@@ -1,12 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="intro" style="background: url({{ image.img_file.url }}) 50% 0% no-repeat; background-size: cover;">
-    <div class="container centered intro-contents">
+    <div class="centered intro-contents">
         <h2 class="separator">Hey! <br>Do you like pictures?</h2>
         <h3> Well, so do we. </h3>
+        <a class="button" href="/accounts/register">Join our site</a>
     </div>
-        <h4 class="centered">
-            <a class="button" href="/accounts/register">Join our site</a>
-        </h4>
 </section>
  {% endblock %}

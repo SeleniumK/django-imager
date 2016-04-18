@@ -77,7 +77,6 @@ section {
 }
 
 .centered {
-  z-index: 9999;
   position: relative;
   top: 50%;
   left: 50%;
@@ -122,6 +121,10 @@ section {
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
 }
+
+.intro-contents{
+  z-index: 9999;
+}
 .intro h2 {
   font-size: 2em;
 }
@@ -130,9 +133,6 @@ section {
   padding: 0 15%;
 }
 
-.intro-contents {
-  margin-top: -5%;
-}
 .intro .separator:before {
   background-color: white;
 }
