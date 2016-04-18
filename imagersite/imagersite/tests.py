@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.contrib.staticfiles import finders
 from django.test import Client, TestCase
 from django.contrib.auth.models import User
+from imager_images.tests.test_models import PhotoFactory, AlbumFactory
+import factory
 
 HOME = '/'
 REGISTER = '/accounts/register/'
@@ -46,3 +48,44 @@ class UnauthenticatedUser(TestCase):
         """Test default image shows up."""
         img_path = self.home.context['image']
         self.assertEqual(img_path, DEFAULT_IMAGE)
+
+
+class AuthenticatedUser(TestCase):
+    """Logged in user tests."""
+
+    def setUp(self):
+        """Setup for logged in user."""
+        self.user = User.objects.create_user(username='dz', password='secret')
+        self.auth_user = Client()
+        self.unauth_user = Client()
+        self.auth_user.login(username='dz', password='secret')
+        self.photo1 = PhotoFactory.create(
+            title='selfie',
+            user=self.user,
+            description='just a picture',
+            published='public'
+        )
+        # self.photo2 = PhotoFactory.create(
+        #     title='sweet',
+        #     user=self.user,
+        #     description='its a pic',
+        #     published='public'
+        # )
+
+    def test_auth_user_image_view(self):
+        """Test to see you only see your pics."""
+        user_id = self.user.id
+        photo_id = self.photo1.id
+        response = self.auth_user.get('/images/photos/{}/{}'.format(user_id, photo_id))
+        self.assertEqual(response.status_code, 200)
+
+    def test_unauth_user_image_view(self):
+        """Test restrict unauth users."""
+        user_id = self.user.id
+        photo_id = self.photo1.id
+        response = self.unauth_user.get('/images/photos/{}/{}'.format(user_id, photo_id))
+        self.assertEqual(response.status_code, 401)
+
+
+
+

@@ -20,14 +20,15 @@ from django.conf.urls import include
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
-from .views import home_page
+from .views import home_page, photo_view
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_page, name="home_page"),
     url(r'^login$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout$', 'django.contrib.auth.views.logout', name='logout'),
-    url(r'^accounts/', include('registration.backends.hmac.urls'))
+    url(r'^accounts/', include('registration.backends.hmac.urls')),
+    url(r'^images/photos/(?P<user_id>[0-9]+)/(?P<photo_id>[0-9]+)', photo_view, name='photo_view')
 ]
 
 urlpatterns += staticfiles_urlpatterns()
