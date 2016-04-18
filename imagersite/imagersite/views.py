@@ -1,21 +1,15 @@
 from __future__ import unicode_literals
-# from django.http import HttpResponse
-# from django.template import loader
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from imager_images.models import Photo
+from django.conf import settings
+from django.contrib.staticfiles import finders
 
+
+DEFAULT_IMAGE = finders.find('css/images/default-image')
 
 def home_page(request, *args, **kwargs):
-    foo = 'garbanzobeans'
-    return render(request, 'home.html', context={'foo': foo})
-
-
-class ClassView(TemplateView):
-    """Class view for Home.html."""
-
-    template_name = 'home.html'
-
-    def get_context_data(self, id=1):
-        """Foo Context for home template."""
-        foo = 'garbanzobeans'
-        return {'foo': foo}
+    try:
+        image = Photo.objects.filter(published="public").order_by("?")[0]
+    except IndexError:
+        image = DEFAULT_IMAGE
+    return render(request, 'home.html', context={'image': image})

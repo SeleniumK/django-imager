@@ -1,13 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <link rel="stylesheet" href="">
-</head>
-<body>
-    <h1>Hello World</h1>    
-    <p>{{ foo }}</p>
-</body>
-</html>
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<section class="intro" style="background: url({{ image.img_file.url }}) 50% 0% no-repeat; background-size: cover;">
+    <div class="container centered intro-contents">
+        <h2 class="separator">Hey! <br>Do you like pictures?</h2>
+        <h3> Well, so do we. </h3>
+    </div>
+        <h4 class="centered">
+            <a class="button" href="/accounts/register">Join our site</a>
+        </h4>
+</section>
+ {% endblock %}

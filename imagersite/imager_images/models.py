@@ -2,12 +2,18 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.conf import settings
+import pprint
 
 PUBLISHED_OPTIONS = (
     ("private", "private"),
     ("shared", "shared"),
     ("public", "public"),
 )
+
+
+def image_path(instance, file_name):
+    """Upload file to media root in user folder."""
+    return 'user_{0}/{1}'.format(instance.user.id, file_name)
 
 
 @python_2_unicode_compatible
@@ -41,10 +47,8 @@ class Album(models.Model):
         return "{}: Album belonging to {}".format(self.title, self.user)
 
     def __repr__(self):
-        """Return Console Representation of Album."""
-        return "Title: {} User: {} NumPhotos: {} CoverPhoto: {}".format(
-            self.title, self.user, self.photos.count(), self.cover.title
-        )
+        """Return Representation of Album object."""
+        return pprint.pformat(vars(self))
 
 
 @python_2_unicode_compatible
@@ -56,7 +60,7 @@ class Photo(models.Model):
         related_name='photos',
         on_delete=models.CASCADE,
     )
-    file = models.ImageField(upload_to='user_photos')
+    img_file = models.ImageField(upload_to=image_path)
     title = models.CharField(max_length=60)
     description = models.TextField(max_length=120)
     date_uploaded = models.DateTimeField(auto_now_add=True)
@@ -70,12 +74,4 @@ class Photo(models.Model):
 
     def __repr__(self):
         """Return Representation of Album Object."""
-        return """
-            {\n\tuser: {} \n\tfile: {} \n\ttitle: {} \n\tdescription: {}
-            \n\tdate_uploaded: {}\n\tdate_modified: {}\n\tdate_published: {}
-            \n\tpublished: {}\n}
-        """.format(
-            self.user, self.file, self.title, self.description,
-            self.date_uploaded, self.date_modified, self.date_published,
-            self.published
-        )
+        return pprint.pformat(vars(self))

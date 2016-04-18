@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Imagetastic.</title>
+    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/skeleton.css' %}">
+    <link rel="stylesheet" href="{% static 'imagersite/css/style.css' %}">
+</head>
+<body>
+<header>
+    <h1>OurName</h1>
+    <nav>
+        <ul>
+        {% if user.is_authenticated %}
+            <li><a href="/logout" title="logout">Logout</a></li>
+        {% else %}
+            <li><a href="/login" title="login">Login</a></li>
+        {% endif %}
+        </ul>
+    </nav>
+</header>
+{% block content %}
+{% endblock content %}
+<footer></footer>
+</body>
+</html>
