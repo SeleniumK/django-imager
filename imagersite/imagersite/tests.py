@@ -1,4 +1,5 @@
 from django.test import Client, TestCase
+from django.contrib.auth.models import User
 from django.conf import settings
 
 HOME = '/'
@@ -18,4 +19,4 @@ class UnauthenticatedUser(TestCase):
 
     def test_no_user_in_db(self):
         """No user i db."""
-        self.assertFalse(USER.objects.count())
+        self.assertFalse(User.objects.count())

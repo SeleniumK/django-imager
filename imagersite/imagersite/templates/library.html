@@ -2,25 +2,33 @@
 {% block content %}
 {% load staticfiles %}
 {% load thumbnail %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+<script type="text/javascript" src="/fancybox/jquery.easing-1.4.pack.js"></script>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
 
-<h2>Library</h2>
-<h3>Albums</h3>
-{% for album in albums %}
-    <h4>{{ album.title }}</h4>
-    {% thumbnail album.cover.img_file "200x200" crop="center" as im %}
-    <img src="{{ im.url }}">
-    {% endthumbnail %}
-    <p>{{ album.description }}</p>
-{% endfor %}
 
-<h3>Photos</h3>
+<h2>{{user.username}}'s Library</h2>
+<section>
+    <h3>Albums</h3>
+    {% for album in albums %}
+        <h4>{{ album.title }}</h4>
+        {% thumbnail album.cover.img_file "200x200" crop="center" as im %}
+        <img src="{{ im.url }}">
+        {% endthumbnail %}
+        <p>{{ album.description }}</p>
+    {% endfor %}
+</section>
 
-{% for photo in photos %}
-    <h4>{{ photo.title }}</h4>
-    {% thumbnail photo.img_file "200x200" crop="center" as im %}
-    <img src="{{ im.url }}">
-    {% endthumbnail %}
-    <p>{{ photo.description }}</p>
-{% endfor %}
+<section>
+    <h3>Photos</h3>
+    {% for photo in photos %}
+        <h4>{{ photo.title }}</h4>
+        {% thumbnail photo.img_file "200x200" crop="center" as im %}
+        <img src="{{ im.url }}">
+        {% endthumbnail %}
+        <p>{{ photo.description }}</p>
+    {% endfor %}
+</section>
 
 {% endblock %}
