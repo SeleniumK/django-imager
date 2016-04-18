@@ -21,10 +21,12 @@ from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from .views import home_page, photo_view
+from imager_profile.views import Profile
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_page, name="home_page"),
+    url(r'^profile/$', Profile, name="profile"),
     url(r'^login$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout$', 'django.contrib.auth.views.logout', name='logout'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),

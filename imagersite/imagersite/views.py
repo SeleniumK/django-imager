@@ -6,10 +6,15 @@ from django.conf import settings
 # TODO: Will need to figure out how to user auth_user_model for views
 from django.contrib.auth.models import User
 from django.contrib.staticfiles import finders
+from django.http import HttpResponseRedirect
 
 DEFAULT_IMAGE = finders.find('css/images/default-image')
+PROFILE = '/profile/'
+
 
 def home_page(request, *args, **kwargs):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(PROFILE)
     try:
         image = Photo.objects.filter(published="public").order_by("?")[0]
     except IndexError:

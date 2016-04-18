@@ -18,6 +18,10 @@ a {
     text-decoration: none;
 }
 
+ul {
+  list-style: none;
+}
+
 header{
   background-color: black;
   overflow: hidden;
@@ -47,7 +51,6 @@ nav {
 }
 
 nav ul {
-  list-style: none;
   text-align: center;
   padding: 0;
   margin: 0 3%;
@@ -70,9 +73,7 @@ nav a:hover {
 
 
 section {
-  color: #ECECED;
   text-align: center;
-  border-bottom: 10px solid black;
 }
 
 .centered {
@@ -107,6 +108,8 @@ section {
   top: 0; right: 0; bottom: 0; left: 0;
   opacity: .9;
   z-index: -1;
+  border-bottom: 10px solid black;
+  color: #ECECED;
 }
 
 .intro:after {
