@@ -10,7 +10,7 @@ PROFILE = '/profile/'
 
 
 def home_page(request, *args, **kwargs):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated():
         return HttpResponseRedirect(PROFILE)
     try:
         image = Photo.objects.filter(published="public").order_by("?")[0]
