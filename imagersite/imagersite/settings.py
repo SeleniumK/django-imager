@@ -38,6 +38,7 @@ LOGIN_REDIRECT_URL = "/profile/"
 INSTALLED_APPS = [
     'imager_profile.apps.ImagerProfileConfig',
     'imager_images.apps.ImagerImagesConfig',
+    'sorl.thumbnail',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
