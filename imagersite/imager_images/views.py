@@ -7,4 +7,9 @@ LIBRARY_TEMPLATE = 'library.html'
 @login_required(login_url='/login')
 def Library(request, *args, **kwargs):
     """Authenticated User Profile."""
-    return render(request, LIBRARY_TEMPLATE)
+    albums = request.user.albums.all()
+    photos = request.user.photos.all()
+    return render(
+        request,
+        LIBRARY_TEMPLATE,
+        context={'albums': albums, 'photos': photos})
