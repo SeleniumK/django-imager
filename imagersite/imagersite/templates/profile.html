@@ -3,9 +3,9 @@
 <section>
 <h2>Welcome {{user.username}}!</h2>
 <ul>
-    <li>Name: {{user.firstname}} {{user.lastname}}</li>
-    <li>Location: {{user.location}}</li>
-    <li>Camera: {{user.camera_type}}</li>
+    <li>Name: {{user.first_name}} {{user.last_name}}</li>
+    <li>Location: {{user.profile.location}}</li>
+    <li>Camera: {{user.profile.camera_type}}</li>
     <li>Photos Uploaded: {{user.photos.count}}
     <li>Albums Created: {{user.albums.count}}
 </ul>
