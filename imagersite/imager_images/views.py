@@ -3,9 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Photo, Album
-from django.views.generic.edit import CreateView, ModelFormMixin, ProcessFormView
+from django.views.generic.edit import ModelFormMixin, ProcessFormView
 from django.views.generic.detail import SingleObjectTemplateResponseMixin
-from django.views.generic import UpdateView
 import datetime
 
 LIBRARY_TEMPLATE = 'library.html'
@@ -32,20 +31,25 @@ def photo_view(request, **kwargs):
 
 
 class AddOrEditContent(SingleObjectTemplateResponseMixin, ModelFormMixin, ProcessFormView):
+    """Generic Class for View to Edit or Add new Content."""
+
     template_name = 'forms.html'
     success_url = '/images/library'
 
     def get_object(self, queryset=None):
+        """Get current object, if any."""
         try:
             return super(AddOrEditContent, self).get_object(queryset)
         except AttributeError:
             return None
 
     def get(self, request, *args, **kwargs):
+        """If request method is get."""
         self.object = self.get_object()
         return super(AddOrEditContent, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
+        """If request method is post."""
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
@@ -54,21 +58,21 @@ class AddOrEditContent(SingleObjectTemplateResponseMixin, ModelFormMixin, Proces
             return self.form_invalid(form)
 
     def form_valid(self, form):
-        """Set user to request user."""
+        """If form is valid, set user to request user and update published date."""
         form.instance.user = self.request.user
         form.instance.date_published = datetime.datetime.now()
         return super(AddOrEditContent, self).form_valid(form)
 
 
 class AddOrEditPhoto(AddOrEditContent):
-    """View to add new Photo."""
+    """View to add or edit new Photo."""
 
     model = Photo
     fields = ["title", "img_file", "description", "published"]
 
 
 class AddOrEditAlbum(AddOrEditContent):
-    """View for form to add new album."""
+    """View for form to edit existing or add new album."""
 
     model = Album
     fields = ["title", "description", "cover", "photos", "published"]
@@ -80,4 +84,3 @@ class AddOrEditAlbum(AddOrEditContent):
         form.fields['cover'].queryset = user_photos
         form.fields['photos'].queryset = user_photos
         return form
-
