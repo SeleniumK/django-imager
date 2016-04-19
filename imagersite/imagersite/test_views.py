@@ -1,7 +1,9 @@
+from __future__ import unicode_literals
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from imager_images.models import Photo
 from django.contrib.staticfiles import finders
+from imager_images.tests.test_models import PhotoFactory
 
 
 DEFAULT_PIC = finders.find('css/images/default-image.jpg')
@@ -9,6 +11,7 @@ HOME = '/'
 SIGNUP = '/accounts/register/'
 LIBRARY = '/images/library'
 PROFILE = '/profile/'
+LOGOUT = '/accounts/logout/?next=/'
 
 
 class NoUsers(TestCase):
@@ -61,6 +64,7 @@ class UnauthenticatedUser(TestCase):
         self.home_response = c.get(HOME)
         self.profile_response = c.get(PROFILE)
         self.library_response = c.get(LIBRARY)
+        self.logout_response = c.get(LOGOUT)
 
     def test_landing_page(self):
         """Assert that unauthenticated user lands at homepage."""
@@ -80,14 +84,26 @@ class UnauthenticatedUser(TestCase):
         """Assert library page redirects unauthenticated users."""
         self.assertEquals(self.library_response.status_code, 302)
 
+    def test_logout(self):
+        """Test logout can be reached."""
+        self.assertEqual(self.logout_response.status_code, 302)
+
 
 class AuthenticatedUser(TestCase):
     """Test views for authenticated users."""
 
     def setUp(self):
         """Set up authenticated users."""
-        c = Client()
-        self.home_response = c.get(HOME)
+        self.user = User.objects.create_user(username='dz', password='secret')
+        self.auth_user = Client()
+        self.unauth_user = Client()
+        self.auth_user.login(username='dz', password='secret')
+        self.photo1 = PhotoFactory.create(
+            title='selfie',
+            user=self.user,
+            description='just a picture',
+            published='public'
+        )
 
     # def test_landing_page_authenticated(self):
     #     """Assert landing page for authenticated users is profile page."""
@@ -96,7 +112,6 @@ class AuthenticatedUser(TestCase):
     # def test_landing_profile(self):
     #     templates = self.home_response.templates
     #     self.assertEquals(templates[0].name, 'profile.html')
-
 
     def test_access_to_profile(self):
         """Assert authenticated user can access profile."""
@@ -113,3 +128,17 @@ class AuthenticatedUser(TestCase):
     def test_library_shows_user_info(self):
         """Assert library shows authenticated user's info."""
         pass
+
+    def test_auth_user_image_view(self):
+        """Test to see you only see your pics."""
+        user_id = self.user.id
+        photo_id = self.photo1.id
+        response = self.auth_user.get('/images/photos/{}/{}'.format(user_id, photo_id))
+        self.assertEqual(response.status_code, 200)
+
+    def test_unauth_user_image_view(self):
+        """Test restrict unauth users."""
+        user_id = self.user.id
+        photo_id = self.photo1.id
+        response = self.unauth_user.get('/images/photos/{}/{}'.format(user_id, photo_id))
+        self.assertEqual(response.status_code, 401)
