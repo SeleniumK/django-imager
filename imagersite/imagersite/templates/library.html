@@ -7,6 +7,7 @@
 <h2>{{user.username}}'s Library</h2>
 <section>
     <h3>Albums</h3>
+    <a href="images/album/add"><h4>Add New Album</h4></a>
     {% for album in albums %}
     <a id="inline" href="#{{album.id}}" alt"Album {{album.title}}">
         {% thumbnail album.cover.img_file "200x200" crop="center" as im %}
@@ -27,6 +28,7 @@
 
 <section>
     <h3>Photos</h3>
+    <a href="images/photos/add"><h4>Add New Photo</h4></a>
     <div class="photos">
     {% for photo in photos %}
             <a id="inline" href="#{{photo.id}}">
