@@ -7,4 +7,5 @@ PROFILE_TEMPLATE = 'profile.html'
 @login_required(login_url='/login')
 def Profile(request, *args, **kwargs):
     """Authenticated User Profile."""
+    import pdb; pdb.set_trace()
     return render(request, PROFILE_TEMPLATE)

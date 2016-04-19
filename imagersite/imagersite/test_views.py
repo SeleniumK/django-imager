@@ -61,10 +61,18 @@ class UnauthenticatedUser(TestCase):
     def setUp(self):
         """Set up unauthenticated users."""
         c = Client()
+        self.unauth_user = Client()
+        self.user = User.objects.create_user(username='dz', password='secret')
         self.home_response = c.get(HOME)
         self.profile_response = c.get(PROFILE)
         self.library_response = c.get(LIBRARY)
         self.logout_response = c.get(LOGOUT)
+        self.photo1 = PhotoFactory.create(
+            title='selfie',
+            user=self.user,
+            description='just a picture',
+            published='public'
+        )
 
     def test_landing_page(self):
         """Assert that unauthenticated user lands at homepage."""
@@ -88,6 +96,13 @@ class UnauthenticatedUser(TestCase):
         """Test logout can be reached."""
         self.assertEqual(self.logout_response.status_code, 302)
 
+    def test_unauth_user_image_view(self):
+        """Test restrict unauth users."""
+        user_id = self.user.id
+        photo_id = self.photo1.id
+        response = self.unauth_user.get('/images/photos/{}/{}'.format(user_id, photo_id))
+        self.assertEqual(response.status_code, 401)
+
 
 class AuthenticatedUser(TestCase):
     """Test views for authenticated users."""
@@ -96,8 +111,9 @@ class AuthenticatedUser(TestCase):
         """Set up authenticated users."""
         self.user = User.objects.create_user(username='dz', password='secret')
         self.auth_user = Client()
-        self.unauth_user = Client()
         self.auth_user.login(username='dz', password='secret')
+        self.profile_response = self.auth_user.get(PROFILE)
+        self.library_response = self.auth_user.get(LIBRARY)
         self.photo1 = PhotoFactory.create(
             title='selfie',
             user=self.user,
@@ -115,15 +131,16 @@ class AuthenticatedUser(TestCase):
 
     def test_access_to_profile(self):
         """Assert authenticated user can access profile."""
-        pass
+        self.assertEquals(self.profile_response.status_code, 200)
 
     def test_access_to_library(self):
         """Assert authenticated user can access library."""
-        pass
+        self.assertEquals(self.library_response.status_code, 200)
 
     def test_profile_shows_user_info(self):
         """Assert profile shows authenticated user's info."""
         pass
+        # self.assertEquals(self.user.username,
 
     def test_library_shows_user_info(self):
         """Assert library shows authenticated user's info."""
@@ -136,9 +153,4 @@ class AuthenticatedUser(TestCase):
         response = self.auth_user.get('/images/photos/{}/{}'.format(user_id, photo_id))
         self.assertEqual(response.status_code, 200)
 
-    def test_unauth_user_image_view(self):
-        """Test restrict unauth users."""
-        user_id = self.user.id
-        photo_id = self.photo1.id
-        response = self.unauth_user.get('/images/photos/{}/{}'.format(user_id, photo_id))
-        self.assertEqual(response.status_code, 401)
+
