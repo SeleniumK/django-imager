@@ -73,5 +73,7 @@ class AddAlbum(AddContent):
 
     def get_form(self, form_class):
         form = super(AddAlbum, self).get_form(form_class)
-        form.fields['photos'].queryset = Photo.objects.filter(user=self.request.user)
+        user_photos = Photo.objects.filter(user=self.request.user)
+        form.fields['cover'].queryset = user_photos
+        form.fields['photos'].queryset = user_photos
         return form
