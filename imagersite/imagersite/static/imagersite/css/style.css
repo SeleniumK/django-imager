@@ -186,6 +186,16 @@ section {
   justify-content: space-around;
 }
 
+.album-container {
+  display: inline-block;
+  position: relative;
+}
+
+.edit {
+  position: absolute;
+  z-index: 999999;
+  margin-top: 0;
+}
 
 @media (max-width: 400px) {
   .button {
