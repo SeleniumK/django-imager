@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from django.forms import ModelForm
-from .models import Photo
+from .models import Photo, Album
 from django.views.generic.edit import CreateView
+from django.forms import ModelForm
+import datetime
 
 LIBRARY_TEMPLATE = 'library.html'
 
@@ -29,36 +30,28 @@ def photo_view(request, **kwargs):
     return render(request, 'images/photo_view.html', context={'image': image})
 
 
-class AddPhoto(CreateView):
-    """View for form to add new photo."""
+class AddContent(CreateView):
+    """Generic view for form to add new content."""
+
+    template_name = 'forms.html'
+    success_url = '/images/library'
+
+    def form_valid(self, form):
+        """Set user to request user."""
+        form.instance.user = self.request.user
+        form.instance.date_published = datetime.datetime.now()
+        return super(AddContent, self).form_valid(form)
+
+
+class AddPhoto(AddContent):
+    """View to add new Photo."""
 
     model = Photo
-    template_name = 'addphoto.html'
-    fields = ["title", "img_file", "description"]
-    success_url = 'library'
+    fields = ["title", "img_file", "description", "published"]
 
 
-class AddAlbum(ModelForm):
+class AddAlbum(AddContent):
     """View for form to add new album."""
 
-    pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    model = Album
+    fields = ["title", "description", "cover", "photos", "published"]
