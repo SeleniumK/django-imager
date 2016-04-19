@@ -19,7 +19,7 @@
         'overlayShow'   :   false
     });
     
-// });
+});
 </script>
 
 <h2>{{user.username}}'s Library</h2>
@@ -27,12 +27,14 @@
     <h3>Albums</h3>
     <a href="albums/add"><h4>Add New Album</h4></a>
     {% for album in albums %}
-    <a class="inline" href="#{{album.id}}" alt"Album {{album.title}}">
-        {% thumbnail album.cover.img_file "200x200" crop="center" as im %}
-        <img src="{{ im.url }}">
-        {% endthumbnail %}
-    </a>
-    <a href='albums/{{album.id}}/edit'><p>Edit this Album</p></a>
+    <div class="album-container">
+        <a class="edit" href='albums/{{album.id}}/edit'><p>Edit</p></a>
+        <a class="inline" href="#{{album.id}}" alt"Album {{album.title}}">
+            {% thumbnail album.cover.img_file "200x200" crop="center" as im %}
+            <img src="{{ im.url }}">
+            {% endthumbnail %}
+        </a>
+    </div>
     <div style="display:none">
         <div id="{{album.id}}">
             <h4>{{ album.title }}</h4>

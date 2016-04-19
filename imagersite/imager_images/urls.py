@@ -2,7 +2,6 @@ from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from imager_images.views import Library
 from .views import photo_view, AddOrEditAlbum, AddOrEditPhoto
-# from .views import photo_view, AddAlbum, AddPhoto, UpdateAlbum
 
 
 urlpatterns = [
