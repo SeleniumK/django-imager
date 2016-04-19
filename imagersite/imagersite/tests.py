@@ -9,7 +9,7 @@ import factory
 HOME = '/'
 REGISTER = '/accounts/register/'
 LOGIN = '/login'
-LOGOUT = '/logout'
+LOGOUT = '/accounts/logout/?next=/'
 DEFAULT_IMAGE = finders.find('static/imagersite/images/default-image.jpg')
 
 
@@ -38,7 +38,7 @@ class UnauthenticatedUser(TestCase):
 
     def test_logout(self):
         """Test logout can be reached."""
-        self.assertEqual(self.logout.status_code, 200)
+        self.assertEqual(self.logout.status_code, 302)
 
     def test_register(self):
         """Test register can be reached."""
@@ -65,12 +65,6 @@ class AuthenticatedUser(TestCase):
             description='just a picture',
             published='public'
         )
-        # self.photo2 = PhotoFactory.create(
-        #     title='sweet',
-        #     user=self.user,
-        #     description='its a pic',
-        #     published='public'
-        # )
 
     def test_auth_user_image_view(self):
         """Test to see you only see your pics."""

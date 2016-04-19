@@ -21,6 +21,6 @@ def photo_view(request, **kwargs):
     photo_id = kwargs.get('photo_id')
     user = User.objects.filter(id=kwargs.get('user_id')).first()
     image = user.photos.filter(id=photo_id).first()
-    if image.published != 'public' and request.user.id != user.id:
+    if image.published != 'public' or request.user.id != user.id:
         return HttpResponse('Unauthorized', status=401)
     return render(request, 'images/photo_view.html', context={'image': image})

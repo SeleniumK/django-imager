@@ -1,7 +1,6 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
 from imager_images.models import Photo
-# TODO: Will need to figure out how to user auth_user_model for views
 from django.contrib.staticfiles import finders
 from django.http import HttpResponseRedirect
 
