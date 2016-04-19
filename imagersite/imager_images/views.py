@@ -30,6 +30,21 @@ def photo_view(request, **kwargs):
     return render(request, 'images/photo_view.html', context={'image': image})
 
 
+# class AlbumForm(ModelForm):
+#     """Album Form."""
+
+#     class Meta:
+#         """Meta."""
+
+#         model = Album
+#         fields = ["title", "description", "cover", "photos", "published"]
+
+#     def __init__(self, *args, **kwargs):
+#         """Damn you pep8."""
+#         super(AlbumForm, self).__init__(self, *args, **kwargs)
+#         self.fields['photos'].queryset = Photo.objects.filter(user=self.user)
+
+
 class AddContent(CreateView):
     """Generic view for form to add new content."""
 
@@ -55,3 +70,8 @@ class AddAlbum(AddContent):
 
     model = Album
     fields = ["title", "description", "cover", "photos", "published"]
+
+    def get_form(self, form_class):
+        form = super(AddAlbum, self).get_form(form_class)
+        form.fields['photos'].queryset = Photo.objects.filter(user=self.request.user)
+        return form
