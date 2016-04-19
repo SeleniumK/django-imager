@@ -10,7 +10,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home_page, name="home_page"),
     url(r'^login$', 'django.contrib.auth.views.login', name='login'),
-    url(r'^logout$', 'django.contrib.auth.views.logout', name='logout'),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
     url(r'^images/', include('imager_images.urls')),
     url(r'^profile/', include('imager_profile.urls')),
