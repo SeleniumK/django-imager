@@ -3,8 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.staticfiles import finders
 from django.test import Client, TestCase
 from django.contrib.auth.models import User
-from django.conf import settings
-from imager_images.tests.test_models import PhotoFactory, AlbumFactory
+from imager_images.tests.test_models import PhotoFactory
 import factory
 
 HOME = '/'
