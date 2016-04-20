@@ -181,12 +181,13 @@ section {
   background-color: #d87843;
 }
 
-.photos {
-  display: flex;
-  justify-content: space-around;
-}
+/*.photo-container {*/
+  /*display: flex;*/
+  /*justify-content: space-around;*/
+/*}*/
 
-.album-container {
+
+.library-container {
   display: inline-block;
   position: relative;
 }
@@ -195,6 +196,14 @@ section {
   position: absolute;
   z-index: 999999;
   margin-top: 0;
+}
+
+.library{
+  margin: 5% 10% 0 10%;
+}
+
+.library-header{
+  position: relative;
 }
 
 .library-header i,{
@@ -206,6 +215,15 @@ section {
   padding-right: 1%;
 
  }
+
+.fa-pencil-square-o {
+  opacity: .4;
+}
+
+.fa-pencil-square-o:hover {
+  opacity: 1;
+}
+
 
 @media (max-width: 400px) {
   .button {
