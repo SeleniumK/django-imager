@@ -197,6 +197,16 @@ section {
   margin-top: 0;
 }
 
+.library-header i,{
+  display: inline-block;
+}
+
+ .library-header h3 {
+  display: inline-block;
+  padding-right: 1%;
+
+ }
+
 @media (max-width: 400px) {
   .button {
     padding: 15px;

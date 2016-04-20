@@ -24,8 +24,10 @@
 
 <h2>{{user.username}}'s Library</h2>
 <section>
-    <h3>Albums</h3>
-    <a href="albums/add"><h4>Add New Album</h4></a>
+    <div class="library-header">
+        <h3>Albums</h3>
+        <a href="albums/add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+    </div>
     {% for album in albums %}
     <div class="album-container">
         <a class="edit" href='albums/{{album.id}}/edit'><p>Edit</p></a>
@@ -48,8 +50,10 @@
 </section>
 
 <section>
-    <h3>Photos</h3>
-    <a href="photos/add"><h4>Add New Photo</h4></a>
+    <div class="library-header">
+        <h3>Photos</h3>
+        <a href="photos/add"><i class="fa fa-plus" aria-hidden="true"></i></a>
+    </div>
     <div class="photos">
     {% for photo in photos %}
             <a class="inline" href="#{{photo.id}}">
