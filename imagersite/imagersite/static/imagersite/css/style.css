@@ -36,13 +36,17 @@ h1 {
   color: #ECECED;
 }
 
+h2 {
+  margin-top: 1%;
+}
+h3 {
+  font-size: 1.5em;
+}
+
 h4 {
   font-size: 1em;
 }
 
-h3 {
-  font-size: 1.5em;
-}
 
 nav {
   overflow: hidden;
