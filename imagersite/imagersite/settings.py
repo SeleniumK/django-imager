@@ -24,12 +24,16 @@ MEDIA_URL = '/media/'
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '49d10u0d73&$c$-^rk1%&ngmo6=s76no@+uv$eoh15&z-id=me'
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.us-west-2.compute.amazonaws.com',
+    'localhost',
+]
+
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = "/profile/"
 
