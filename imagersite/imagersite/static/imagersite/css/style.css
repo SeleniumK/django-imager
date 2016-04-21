@@ -38,6 +38,7 @@ h1 {
 
 h2 {
   margin-top: 1%;
+  margin-left: 3%;
 }
 h3 {
   font-size: 1.5em;
@@ -185,11 +186,6 @@ section {
   background-color: #d87843;
 }
 
-/*.photo-container {*/
-  /*display: flex;*/
-  /*justify-content: space-around;*/
-/*}*/
-
 
 .library-container {
   display: inline-block;
@@ -203,7 +199,7 @@ section {
 }
 
 .library{
-  margin: 5% 10% 0 10%;
+  margin: 3% 10% 0 10%;
 }
 
 .library-header{
