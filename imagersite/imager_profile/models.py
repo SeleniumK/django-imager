@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
 from django.conf import settings
+import pprint
 
 LOCATIONS = (
     ("US", "United States"),
@@ -37,14 +38,15 @@ class ImagerProfile(models.Model):
         symmetrical=False
     )
     location = models.CharField(max_length=2, choices=LOCATIONS)
+    camera_type = models.CharField(max_length=20, null=True)
 
     def __str__(self):
-        """Create String Representation Of ImagerProfile."""
+        """Create String Representation Of ImagerProfile Details."""
         return "{}'s profile".format(self.user)
 
     def __repr__(self):
-        """Create console Representation Of ImagerProfile."""
-        return self.__str__()
+        """Create a Representation Of ImagerProfile Object."""
+        return pprint.pformat(vars(self))
 
     @property
     def is_active(self):

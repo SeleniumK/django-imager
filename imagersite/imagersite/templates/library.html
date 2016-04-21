@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
+{% load thumbnail %}
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'imagersite/fancybox/source/jquery.fancybox.pack.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("a.inline").fancybox({
+            'hideOnContentClick': true
+        });
+
+    $("a.group").fancybox({
+        'transitionIn'  :   'elastic',
+        'transitionOut' :   'elastic',
+        'speedIn'       :   600, 
+        'speedOut'      :   200, 
+        'overlayShow'   :   false
+    });
+    
+});
+</script>
+
+<h2>{{user.username}}'s Library</h2>
+<section class="library">
+    <div class="library-header">
+        <h3>Albums</h3>
+        <a href="albums/add"><i title="add new album" class="fa fa-plus"></i></a>
+    </div>
+    {% for album in albums %}
+    <div class="library-container">
+        <a class="edit" href='albums/{{album.id}}/edit'>
+            <i name="edit album" class="fa fa-pencil-square-o fa-2x"></i>
+        </a>
+        <a class="inline" href="#{{album.id}}" alt"Album {{album.title}}">
+            {% thumbnail album.cover.img_file "200x200" crop="center" as im %}
+            <img src="{{ im.url }}">
+            {% endthumbnail %}
+        </a>
+    </div>
+    <div style="display:none">
+        <div id="{{album.id}}">
+            <h4>{{ album.title }}</h4>
+            <p>{{ album.description }}</p>
+            {% for photo in album.photos.all %}
+                <img src="{{photo.img_file.url}}"/>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<section class="library">
+    <div class="library-header">
+        <h3>Photos</h3>
+        <a href="photos/add"><i title="add new photo" class="fa fa-plus"></i></a>
+    </div>
+    {% for photo in photos %}
+        <div class="library-container">
+            <a class="edit" href='photos/{{photo.id}}/edit'>
+                <i name="edit album" class="fa fa-pencil-square-o fa-2x"></i>
+            </a>
+            <a class="inline" href="#{{photo.id}}">
+                {% thumbnail photo.img_file "200x200" crop="center" as im %}
+                <img src="{{ im.url }}" alt="{{photo.title}}">
+                {% endthumbnail %}
+            </a>
+        </div>
+        <div style="display:none">
+            <div id="{{photo.id}}">
+                <img src="{{photo.img_file.url}}"/>
+                <h4>{{photo.title}}</h4>
+                <p>{{photo.description}}
+            </div>
+        </div>
+    {% endfor %}
+</section>
+
+{% endblock %}

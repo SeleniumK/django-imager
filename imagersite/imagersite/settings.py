@@ -16,6 +16,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -26,13 +30,15 @@ SECRET_KEY = '49d10u0d73&$c$-^rk1%&ngmo6=s76no@+uv$eoh15&z-id=me'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+ACCOUNT_ACTIVATION_DAYS = 7
+LOGIN_REDIRECT_URL = "/profile/"
 
 # Application definition
 
 INSTALLED_APPS = [
     'imager_profile.apps.ImagerProfileConfig',
     'imager_images.apps.ImagerImagesConfig',
+    'sorl.thumbnail',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,7 +63,7 @@ ROOT_URLCONF = 'imagersite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'imagersite', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +85,7 @@ WSGI_APPLICATION = 'imagersite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'seleniumk',
+        'USER': os.environ.get('USER'),
         'HOST': 'localhost',
         'NAME': 'imager',
     }
@@ -119,8 +125,14 @@ USE_L10N = True
 USE_TZ = True
 
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "imagersite", "static")
+]
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "tmp", "emails")

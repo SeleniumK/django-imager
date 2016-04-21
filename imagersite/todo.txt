@@ -1,0 +1,14 @@
+TODO
+
+
+Templates for registration
+Fancybox working/views for picture/album
+Profile Picture
+display friend's profile picture as thumbnail on profile
+style profile
+Can see other users profiles /users/username
+can add friend from user profile
+can see other users pictures /users/username/pictures
+view for recently added public pictures (timeline) -- link to user profile
+
+can search for users

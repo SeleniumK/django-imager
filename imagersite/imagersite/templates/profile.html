@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section>
+<h2>Welcome {{user.username}}!</h2>
+<ul>
+    <li>Name: {{user.first_name}} {{user.last_name}}</li>
+    <li>Location: {{user.profile.location}}</li>
+    <li>Camera: {{user.profile.camera_type}}</li>
+    <li>Photos Uploaded: {{user.photos.count}}
+    <li>Albums Created: {{user.albums.count}}
+</ul>
+<h4>Friends:</h4>
+<ul>
+    {% for friend in user.profile.friends.all %}
+    <li>{{friend.user.username}}</li>
+    {% endfor %}
+</ul>
+<a href="edit/">Hey! Edit your profile</a>
+</section>
+{% endblock %}
