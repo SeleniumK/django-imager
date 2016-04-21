@@ -4,18 +4,22 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Imagetastic.</title>
-    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/normalize.css' %}">
-    <link rel="stylesheet" href="{% static 'imagersite/css/Skeleton-2.0.4/skeleton.css' %}">
+    <title>Obscura</title>
+    <link rel="stylesheet" href="{% static 'imagersite/css/skeleton/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'imagersite/css/skeleton/skeleton.css' %}">
     <link rel="stylesheet" href="{% static 'imagersite/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'imagersite/fancybox/source/jquery.fancybox.css' %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 </head>
 <body>
 <header>
-    <h1>OurName</h1>
+    <h1>Obscura</h1>
     <nav>
         <ul>
+            <li><a href="/images/library" title="library">Library</a></li>
         {% if user.is_authenticated %}
-            <li><a href="/logout" title="logout">Logout</a></li>
+            <li><a href="/profile/" title="profile">{{ user.username }}
+            <li><a href="{% url 'django.contrib.auth.views.logout' %}?next=/" title="logout">Logout</a></li>
         {% else %}
             <li><a href="/login" title="login">Login</a></li>
         {% endif %}
@@ -25,5 +29,7 @@
 {% block content %}
 {% endblock content %}
 <footer></footer>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="{% static 'imagersite/fancybox/source/jquery.fancybox.pack.js' %}"></script>
 </body>
 </html>

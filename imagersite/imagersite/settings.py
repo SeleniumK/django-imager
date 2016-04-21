@@ -31,13 +31,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 ACCOUNT_ACTIVATION_DAYS = 7
-
+LOGIN_REDIRECT_URL = "/profile/"
 
 # Application definition
 
 INSTALLED_APPS = [
     'imager_profile.apps.ImagerProfileConfig',
     'imager_images.apps.ImagerImagesConfig',
+    'sorl.thumbnail',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

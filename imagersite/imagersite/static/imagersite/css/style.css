@@ -18,6 +18,10 @@ a {
     text-decoration: none;
 }
 
+ul {
+  list-style: none;
+}
+
 header{
   background-color: black;
   overflow: hidden;
@@ -32,13 +36,18 @@ h1 {
   color: #ECECED;
 }
 
+h2 {
+  margin-top: 1%;
+  margin-left: 3%;
+}
+h3 {
+  font-size: 1.5em;
+}
+
 h4 {
   font-size: 1em;
 }
 
-h3 {
-  font-size: 1.5em;
-}
 
 nav {
   overflow: hidden;
@@ -47,7 +56,6 @@ nav {
 }
 
 nav ul {
-  list-style: none;
   text-align: center;
   padding: 0;
   margin: 0 3%;
@@ -70,13 +78,10 @@ nav a:hover {
 
 
 section {
-  color: #ECECED;
   text-align: center;
-  border-bottom: 10px solid black;
 }
 
 .centered {
-  z-index: 9999;
   position: relative;
   top: 50%;
   left: 50%;
@@ -107,6 +112,8 @@ section {
   top: 0; right: 0; bottom: 0; left: 0;
   opacity: .9;
   z-index: -1;
+  border-bottom: 10px solid black;
+  color: #ECECED;
 }
 
 .intro:after {
@@ -119,6 +126,10 @@ section {
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
 }
+
+.intro-contents{
+  z-index: 9999;
+}
 .intro h2 {
   font-size: 2em;
 }
@@ -127,9 +138,6 @@ section {
   padding: 0 15%;
 }
 
-.intro-contents {
-  margin-top: -5%;
-}
 .intro .separator:before {
   background-color: white;
 }
@@ -176,6 +184,44 @@ section {
 }
 .separator.orange:before {
   background-color: #d87843;
+}
+
+
+.library-container {
+  display: inline-block;
+  position: relative;
+}
+
+.edit {
+  position: absolute;
+  z-index: 999999;
+  margin-top: 0;
+}
+
+.library{
+  margin: 3% 10% 0 10%;
+}
+
+.library-header{
+  position: relative;
+}
+
+.library-header i,{
+  display: inline-block;
+}
+
+ .library-header h3 {
+  display: inline-block;
+  padding-right: 1%;
+
+ }
+
+.fa-pencil-square-o {
+  opacity: .4;
+}
+
+.fa-pencil-square-o:hover {
+  opacity: 1;
 }
 
 
