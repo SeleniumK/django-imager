@@ -1,7 +1,9 @@
 appnope==0.1.0
 coverage==4.0.3
 decorator==4.0.9
+dj-database-url==0.4.1
 Django==1.9.5
+django-coverage==1.2.4
 django-registration==2.0.4
 factory-boy==2.6.1
 fake-factory==0.5.7
@@ -14,6 +16,7 @@ Pillow==3.2.0
 psycopg2==2.6.1
 ptyprocess==0.5.1
 python-dateutil==2.5.2
+redis==2.10.5
 selenium==2.53.1
 simplegeneric==0.8.1
 six==1.10.0
