@@ -1,5 +1,5 @@
 Hey! You registered for our site. Here is your activation info.
 
-Activation Key: {{ activation_key }}
-Expiration Date: {{ expiration_date }}
-Site: {{ site }}
+Click here to register
+http://{{ site.domain }}{% url "registration_activate" activation_key %}
+
