@@ -28,7 +28,7 @@ MEDIA_URL = '/media/'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'nfijha')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False 
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '.us-west-2.compute.amazonaws.com']
 
