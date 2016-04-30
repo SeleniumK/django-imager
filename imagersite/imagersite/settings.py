@@ -28,12 +28,13 @@ MEDIA_URL = '/media/'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'nfijha')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = False 
 
 ALLOWED_HOSTS = ['localhost', '.us-west-2.compute.amazonaws.com']
 
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = "/profile/"
+FILE_UPLOAD_PERMISSIONS = 0600
 
 # Application definition
 
