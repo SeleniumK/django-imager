@@ -34,11 +34,12 @@ ALLOWED_HOSTS = ['localhost', '.us-west-2.compute.amazonaws.com']
 
 ACCOUNT_ACTIVATION_DAYS = 7
 LOGIN_REDIRECT_URL = "/profile/"
-FILE_UPLOAD_PERMISSIONS = 0600
+FILE_UPLOAD_PERMISSIONS = 600
 
 # Application definition
 
 INSTALLED_APPS = [
+    'imager_api.apps.ImagerApiConfig',
     'imager_profile.apps.ImagerProfileConfig',
     'imager_images.apps.ImagerImagesConfig',
     'sorl.thumbnail',
