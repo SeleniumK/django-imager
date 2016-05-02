@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', 'nfijha')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '.us-west-2.compute.amazonaws.com']
 
@@ -80,13 +80,13 @@ WSGI_APPLICATION = 'imagersite.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'USER': os.environ.get('USER'),
-        'HOST': 'localhost',
-        'NAME': 'imager',
-    }
-    # 'default': dj_database_url.config(default=os.environ.get('DJANGO_DATABASE_URL'))
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'USER': os.environ.get('USER'),
+    #     'HOST': 'localhost',
+    #     'NAME': 'imager',
+    # }
+    'default': dj_database_url.config(default=os.environ.get('DJANGO_DATABASE_URL'))
 }
 
 
