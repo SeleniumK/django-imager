@@ -28,7 +28,7 @@ MEDIA_URL = '/media/'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'nfijha')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '.us-west-2.compute.amazonaws.com']
 
@@ -38,6 +38,7 @@ LOGIN_REDIRECT_URL = "/profile/"
 # Application definition
 
 INSTALLED_APPS = [
+    'imager_api.apps.ImagerApiConfig',
     'imager_profile.apps.ImagerProfileConfig',
     'imager_images.apps.ImagerImagesConfig',
     'sorl.thumbnail',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework'
 ]
 
 MIDDLEWARE_CLASSES = [
